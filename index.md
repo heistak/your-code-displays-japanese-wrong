@@ -1,6 +1,5 @@
 ---
 title: Your code displays Japanese wrong
-layout: post
 ---
 
 ### Why am I here?
