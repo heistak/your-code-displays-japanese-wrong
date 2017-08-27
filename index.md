@@ -20,6 +20,9 @@ The Kanji glyph sets used in Chinese, Japanese, and Korean (commonly abbreviated
 
 Therefore, if text in Japanese is displayed using a Kanji glyph set meant for Chinese, it will immediately stand out to a native Japanese speaker as ugly, non-native, and plain bizarre due to the unfamiliar glyphs showing up in the text. This is most likely what’s happening with your program.
 
+### Is it that much of a big deal?
+Very. While admittedly the app is not exactly unreadable in this state, it is much more than the difference between, say, the lowercase A with or without the overhang - it's more like [WIP]. Everyone has a clear idea of what looks native and what doesn't[WIP]
+
 ### Why does that happen?
 
 Back when Unicode was being designed, a decision called [Han Unification](https://en.wikipedia.org/wiki/Han_unification) was made to create a single unified set of all the Chinese (Simplified/Traditional), Japanese, and Korean Kanji characters. This involved giving equivalent code points to characters that were deemed equivalent across languages, which allowed the size of the character set to be kept small. 
@@ -44,7 +47,7 @@ In a nutshell, the way to fix it is to make your code and font be aware that it�
 
 #### Web development
 
-The browser rendering engine is usually smart enough to choose the correct fonts from generic font family declarations like `font-family: sans-serif`. However, it may display incorrect glyphs if the `lang` or `xml:lang` property of your DOM elements are specified to `en` or any value that does not match the actual language of the text within. Make sure that when you switch the output language of your pages, both the content *and* the `lang` property changes.
+The browser rendering engine is usually smart enough to choose the correct fonts from generic font family declarations like `font-family: sans-serif`. However, it may choose a wrong font if the `lang` or `xml:lang` property of your DOM elements are specified to `en`, `en-US` or some other value that does not match the actual language of the text within. Make sure that when you switch the output language of your pages to Japanese, the `lang` property also changes to `ja`.
 
 Also, if explicitly specifying fonts, be sure to specify a font that is designed for the language. The following `font-family` statement covers most standard Japanese fonts preinstalled in Mac OS, iOS and Windows:
 
@@ -52,23 +55,23 @@ Also, if explicitly specifying fonts, be sure to specify a font that is designed
 
 Games often store and display fonts using a system that generates font texture atlases from a font file, such as Unity's [TextMesh Pro](http://digitalnativestudios.com/).
 
-If you are using such a system, make sure you are generating separate font atlases for each CJK language, and that each of the source fonts used to generate them are specifically designed for that language. [Google's Noto project](https://www.google.com/get/noto/help/cjk/) provide great fonts that are available for and look good in any language, with fonts specifically designed for [Japanese](https://www.google.com/get/noto/#sans-jpan), [Simplified Chinese](https://www.google.com/get/noto/#sans-hans), [Traditional Chinese](https://www.google.com/get/noto/#sans-hant), [Korean](https://www.google.com/get/noto/#sans-kore), etc.
+If you are using such a system, make sure you are generating separate font atlases for each CJK language, and that each of the source fonts used to generate them are specifically designed for that language. [Google's Noto project](https://www.google.com/get/noto/help/cjk/) provide great fonts that are available for and look good in any language, with open-licensed fonts specifically designed for [Japanese](https://www.google.com/get/noto/#sans-jpan), [Simplified Chinese](https://www.google.com/get/noto/#sans-hans), [Traditional Chinese](https://www.google.com/get/noto/#sans-hant), [Korean](https://www.google.com/get/noto/#sans-kore), etc.
 
 ### Any other things to be careful of?
 
 #### Web: Do not enable discretionary ligatures
-Discretionary ligatures is a feature of modern fonts, separate from normal ligatures, that allow certain character sequences to be rendered in a more decorative, ornamental style. Due to its often fanciful appearances, it is to be used with discretion, hence the name. Discretionary Ligatures are supported in CSS as either `font-feature-settings: "dlig" 1;` or `font-variant-ligatures: discretionary-ligatures;`.
+Discretionary ligatures is a feature of modern fonts, separate from normal ligatures, that allow certain character sequences to be rendered in a more decorative, ornamental style. Due to its often fanciful appearance, it is to be used with discretion, hence the name. Discretionary ligatures can be enabled in CSS as either `font-feature-settings: "dlig" 1` or `font-variant-ligatures: discretionary-ligatures`.
 
-However, do *not* blanket-enable them in Japanese text, as doing so can inadvertently trigger all sorts of obscure weirdo ligatures such as the word <span xml:lang="ja" lang="ja">マンション</span> (mansion) turning into the single-letter <span xml:lang="ja" lang="ja">㍇</span> variant, <span xml:lang="ja" lang="ja">ます</span> (a very common way to end sentences in Japanese) turning into <span xml:lang="ja" lang="ja">〼</span>, etc. There would be *very* few situations where you would want to intentionally trigger this; it's better left disabled.
+However, do *not* blanket-enable them in Japanese text, as doing so can inadvertently trigger all sorts of obscure weirdo ligatures such as the word <span xml:lang="ja" lang="ja">マンション</span> (mansion) turning into the single-letter <span xml:lang="ja" lang="ja">㍇</span> variant, <span xml:lang="ja" lang="ja">ます</span> (a very common way to end sentences in Japanese) turning into <span xml:lang="ja" lang="ja">〼</span>, etc. There would be *very* few situations where you would want to intentionally trigger this. It's better left disabled.
 
 #### Games: Use composite fonts
 
 In cases where you generate font atlases, you may run into a situation where you are already using a specific font in the Western-text version of your game, and that font does not contain CJK glyphs. In such cases, you may want to go look for a font that does contain both Western and CJK glyphs, like the aforementioned Google Noto. 
 
-When you do this, note that you do *not* need to switch your western glyphs into that CJK font just because you are using that font - in fact, please don't. It is normal, and even desired, for Asian graphic design in situations like this to use *composite fonts*, where one typeface is used for western text and another typeface for CJK text (preferably with matching font weights,) in order to retain the visual appearance of the original alphabets-based design. Therefore, the best course of action would be to keep your western characters still sourced from your original font, but use a dedicated CJK font for CJK character code points.
+When you do this, note that you do *not* need to switch your western glyphs into that CJK font just because you are using that font - in fact, please don't. It is normal, and even desired, for Asian graphic design in situations like this to use *composite fonts*, where one typeface is used for western text and another typeface for CJK text (preferably with matching font weights,) in order to retain the visual appearance of the original western-font-based design. Therefore, the best course of action would be to keep your western characters still sourced from your original font, but use a dedicated CJK font for CJK character code points.
 
 ![Screenshot from Pokémon GO demonstrating composite fonts](img/pokemongo.jpg "Screenshot from Pokémon GO demonstrating composite fonts.")
-The above screenshot from Pokémon GO demonstrates composite fonts. Note that the numbers and units are still displayed using [Lato](https://fonts.google.com/specimen/Lato), Pokémon GO's English font, while the Japanese text are displayed in Hiragino Kaku Gothic, a CJK font built into iOS.
+The above screenshot from Pokémon GO demonstrates composite fonts. Note that the numbers and units are still displayed using [Lato](https://fonts.google.com/specimen/Lato), Pokémon GO's English font, while the Japanese text are displayed in Hiragino Kaku Gothic, a Japanese font built into iOS.
 
 
 #### Line-wrapping rules
@@ -76,7 +79,7 @@ In the case of web, or TextMesh Pro, [WIP]
 
 ### Do similar problems occur with other languages? / Why aren’t there steps to fix it in [insert environment here]?
 
-I haven’t gone into details since the author is a Japanese who only speaks English/Japanese, and made this out of a personal peeve. Honestly I do not have too much insight on other languages. If you can offer assistance in problems that happen with other languages or environments please drop me a line.
+I haven’t gone into details since the author is a Japanese who only speaks English/Japanese, and made this out of a personal peeve. Honestly I do not have too much insight on other languages. If you can offer assistance in problems that happen with other languages or environments, or find any mistakes, please drop me a line.
 
 ### More Resources
 
@@ -84,4 +87,7 @@ I haven’t gone into details since the author is a Japanese who only speaks Eng
 * Model View Culture: [I Can Text You A Pile of Poo, But I Can’t Write My Name](https://modelviewculture.com/pieces/i-can-text-you-a-pile-of-poo-but-i-cant-write-my-name)
 
 ### Author
-Kenji Iguchi <[Email](mailto&#58;%&#54;Ee%65d&#108;&#101;&#64;&#104;eistak%2&#69;%63om), [Twitter](https://twitter.com/needle_e), [Facebook](http://heistak.com/fb)>
+Kenji Iguchi
+* [Email](mailto&#58;%&#54;Ee%65d&#108;&#101;&#64;&#104;eistak%2&#69;%63om), [Twitter](https://twitter.com/needle_e), [Facebook](http://heistak.com/fb)
+* Donate BTC: 13rbSDJ5Xp5zS4ecjtXSUH9isW1FNZXUU6
+* Donate ETH: 0xEccc036049c56055e1f0D3152ec0f152a89ADD7F 
