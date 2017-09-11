@@ -61,7 +61,7 @@ If you are using such a system, make sure you are generating separate font atlas
 
 ## Any other things to be careful of?
 
-A few other things. [I've separated them off to a separate page](otherthings.html).
+A few other things. [I broke them off to a separate page](otherthings.html).
 
 ## Do similar problems occur with other languages? / Why aren’t there steps to fix it in [insert environment here]?
 
