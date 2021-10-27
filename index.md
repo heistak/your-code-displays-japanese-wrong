@@ -75,5 +75,3 @@ The author is a Japanese native who only speaks English/Japanese, and made this 
 ## Author
 Kenji Iguchi
 * [Email](mailto&#58;%&#54;Ee%65d&#108;&#101;&#64;&#104;eistak%2&#69;%63om), [Twitter](https://twitter.com/needle_e), [Facebook](http://heistak.com/fb)
-* Donate BTC: 13rbSDJ5Xp5zS4ecjtXSUH9isW1FNZXUU6
-* Donate ETH: 0xEccc036049c56055e1f0D3152ec0f152a89ADD7F 
