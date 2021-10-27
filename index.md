@@ -8,7 +8,7 @@ If you were brought here from a link given to you, the person who gave you the l
 
 ## OK, what’s wrong?
 
-Kanji, also known as Hanzi, Hanja or just Han Characters, is a set of logographic characters that originated in China but are now also used in Japan, Korea, and Taiwan. It consists of several thousand characters, each having their own glyph (glyph is a typographical term which refers to the appearance of a character, as opposed to the meaning.)
+Kanji, also known as Hanzi, Hanja or just Han Characters, is a set of logographic characters that originated in China but are also used in Japan, Korea, Taiwan, etc. It consists of several thousand characters, each having their own glyph (glyph is a typographical term which refers to the appearance of a character, as opposed to the meaning.)
 
 The Kanji glyph sets used in Chinese, Japanese, and Korean -- commonly abbreviated to CJK -- each look mostly similar to each other, but have large numbers of characters that must look distinctly different. For instance, here are the Japanese, Simplified Chinese, and Traditional Chinese glyph variants of the character that represents *knife edge*:
 
@@ -31,7 +31,7 @@ In many cases, the default fallback behavior in an ambiguous situation is to cho
 ## Is it that much of a big deal?
 As the app is not exactly unreadable in this state, it may be tempting to consider this issue minor and give it low priority. However, this issue is much more than the difference between, say, the lowercase A with or without the overhang - rather, imagine your єnglιsЋ ҭєxҭ lѳѳks lικє ҭЋιs. 
 
-Much like how the previous sentence immediately jumps out at you as appearing *weird* and *wrong*, Japanese text written in incorrect glyph sets will stand out similarly to any native speaker of Japanese, and will give off a strong connotation that whoever developed this app does not care about this (often large) subset of the global user population. I hope you agree in that this apathy is not the message you want to be sending.
+Much like how the previous sentence immediately jumps out at you as appearing *weird* and *wrong*, Japanese text written in incorrect glyph sets will stand out similarly to any native speaker of Japanese, and will give off a connotation that whoever developed this app does not care about this (often large) subset of the global user population. I hope you agree in that this apathy is not the message you want to be sending.
 
 ## How can I check if it’s happening or not?
 
@@ -51,7 +51,7 @@ In a nutshell, the way to fix it is to make your code and font be aware that it�
 
 On the web, browser rendering engines are usually smart enough to choose the correct fonts from generic font family declarations like `font-family: sans-serif`. However, it may choose a wrong font if the `lang` or `xml:lang` property of your DOM elements are specified to a value that's not `ja`. Make sure that when you switch the output language of your pages to Japanese, the `lang` property also changes to `ja`.
 
-Also, if explicitly specifying fonts in CSS, be sure to specify a font that is designed for the language. The following `font-family` statement covers most standard Japanese fonts preinstalled in Mac OS, iOS and Windows:
+Also, if explicitly specifying fonts in CSS, be sure to specify a font that is designed for the language. The following `font-family` statement covers most standard Japanese fonts preinstalled in macOS, iOS, Android, and Windows:
 
 [TBD; will insert CSS statement later]
 
