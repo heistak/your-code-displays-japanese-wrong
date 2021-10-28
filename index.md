@@ -4,19 +4,19 @@ title: Your code displays Japanese wrong
 
 ## Why am I here?
 
-If you were brought here from a link given to you, the person who gave you the link probably thinks your code displays Japanese wrong. In short, from a native Japanese eye, yѳur ҭєxҭ lѳѳks κιnd ѳf lικє ҭЋιs. This page will give you a brief description of the glyph appearance problems that often arise with implementations of Asian text display, why it happens, why it’s a big deal, and how to fix it.
+If someone gave you a link to this page, that person probably thinks your code displays Japanese wrong. In short, from a native Japanese eye, yѳur ҭєxҭ lѳѳκs κιnd ѳf lικє ҭЋιs. This page will give you a brief description of the glyph appearance problems that often arise with implementations of Asian text display, why it happens, why it’s a big deal, and how to fix it.
 
 ## OK, what’s wrong?
 
-Kanji, also known as Hanzi, Hanja or just Han Characters, is a set of logographic characters that originated in China but are also used in Japan, Korea, Taiwan, etc. It consists of several thousand characters, each having their own glyph (glyph is a typographical term which refers to the appearance of a character, as opposed to the meaning.)
+Kanji, also known as Hanzi, Hanja or just Han Characters, is a set of characters that originated in China but are also used in Japan, Korea, Taiwan, etc. The Kanji glyph sets used in Chinese, Japanese, and Korean each consist of several thousand characters. (*Glyph* is a typographical term which refers to the appearance of a character, as opposed to the meaning.) 
 
-The Kanji glyph sets used in Chinese, Japanese, and Korean—commonly abbreviated to CJK—each look mostly similar to each other, but have large numbers of characters that must look distinctly different. For instance, here are the Japanese, Simplified Chinese, and Traditional Chinese glyph variants of the character that represents *knife edge*:
+These sets look mostly similar to each other, but have large numbers of characters that look different. For instance, here are the Japanese, Simplified Chinese, and Traditional Chinese glyph variants of the character that represents *knife edge*:
 
-| Language            | Glyph                                               |
-|---------------------|-----------------------------------------------------|
-| Japanese            | ![knife edge, Japanese](img/knife-jp.png)           |
-| Simplified Chinese  | ![knife edge, Simplified Chinese](img/knife-sc.png) |
-| Traditional Chinese | ![knife edge, Traditional Chinese](img/knife-tc.png)|
+| Language            | Glyph                                               | Unicode Code Point |
+|---------------------|-----------------------------------------------------|--------------------|
+| Japanese            | ![knife edge, Japanese](img/knife-jp.png)           | U+5203             |
+| Simplified Chinese  | ![knife edge, Simplified Chinese](img/knife-sc.png) | U+5203             |
+| Traditional Chinese | ![knife edge, Traditional Chinese](img/knife-tc.png)| U+5203             |
 
 Therefore, if text in Japanese is displayed using a Kanji glyph set meant for other languages, it will look to a native Japanese reader as non-native, vaguely shady, and plain bizarre due to the unfamiliar glyphs showing up in the text. This is most likely what’s happening with your program.
 
@@ -24,12 +24,12 @@ Therefore, if text in Japanese is displayed using a Kanji glyph set meant for ot
 
 Back when Unicode was being designed, a decision called [Han Unification](https://en.wikipedia.org/wiki/Han_unification) was made to create a single unified set of all the Chinese (Simplified/Traditional), Japanese, and Korean Kanji characters. This involved giving equivalent code points to characters that were deemed equivalent across languages, which allowed the size of the character set to be kept small. 
 <style><!-- span.emkanji { font-size: 200%; line-height: 100%;} --></style>
-However, this also meant that characters which differ in appearance across languages, such as <span xml:lang="ja" lang="ja">刃</span> and <span  xml:lang="zh-Hans" lang="zh-Hans">刃</span> and <span xml:lang="zh-Hant" lang="zh-Hant">刃</span>, were given identical code points! It is up to the program displaying the text to render them using a font that can display the correct glyph set. Which, if the developer is not aware of it, tends to fail.
+However, this also meant that characters which differ in appearance across languages, such as <span xml:lang="ja" lang="ja">刃</span> and <span  xml:lang="zh-Hans" lang="zh-Hans">刃</span> and <span xml:lang="zh-Hant" lang="zh-Hant">刃</span>, were given **identical code points!** It is up to the program displaying the text to render them using a font that can display the correct glyph set. 
 
-In many cases, the default fallback behavior in an ambiguous situation is to choose the Simplified Chinese glyph set. Therefore, Japanese text tends to be incorrectly displayed using Chinese glyphs.
+In many cases, the default fallback behavior in an ambiguous situation is to choose the Simplified Chinese glyph set. Therefore, if the developer isn't aware of it, Japanese text tends to be incorrectly displayed using Chinese glyphs.
 
 ## Is it that much of a big deal?
-As the app is not exactly unreadable in this state, it may be tempting to consider this issue minor and give it low priority. However, this issue is much more than the difference between, say, the lowercase A with the overhang (a) or without (α). Like the example at the beginning of this article, if the equivalent symptom was happening with English text, ιҭ wѳuld bє lѳѳkιng sѳmєҭЋιng lικє ҭЋιs. 
+As the app is not exactly unreadable in this state, it may be tempting to consider this issue minor and give it low priority. However, this issue is much more than the difference between, say, the lowercase A with the overhang (a) or without (α). Like the example at the beginning of this article, if the equivalent symptom was happening with English text, ιҭ wѳuld bє lѳѳκιng sѳmєҭЋιng lικє ҭЋιs. 
 
 Much like how the previous sentence immediately jumps out at you as appearing *weird* and *wrong*, Japanese text written in incorrect glyph sets will stand out similarly to any native speaker of Japanese, and will give off a connotation that whoever developed this app does not care about this (often large) subset of the global user population. I hope you agree in that this apathy is not the message you want to be sending.
 
