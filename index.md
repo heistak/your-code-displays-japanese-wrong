@@ -12,11 +12,11 @@ Kanji, also known as Hanzi, Hanja or just Han Characters, is a set of logographi
 
 The Kanji glyph sets used in Chinese, Japanese, and Korean—commonly abbreviated to CJK—each look mostly similar to each other, but have large numbers of characters that must look distinctly different. For instance, here are the Japanese, Simplified Chinese, and Traditional Chinese glyph variants of the character that represents *knife edge*:
 
-| Language            | Glyph                                                             |
-|---------------------|-------------------------------------------------------------------|
-| Japanese            | <span class="emkanji" xml:lang="ja" lang="ja">刃</span>           |
-| Simplified Chinese  | <span class="emkanji" xml:lang="zh-Hans" lang="zh-Hans">刃</span> |
-| Traditional Chinese | <span class="emkanji" xml:lang="zh-Hant" lang="zh-Hant">刃</span> |
+| Language            | Glyph                                               |
+|---------------------|-----------------------------------------------------|
+| Japanese            | ![knife edge, Japanese](img/knife-jp.png)           |
+| Simplified Chinese  | ![knife edge, Simplified Chinese](img/knife-sc.png) |
+| Traditional Chinese | ![knife edge, Traditional Chinese](img/knife-tc.png)|
 
 Therefore, if text in Japanese is displayed using a Kanji glyph set meant for other languages, it will look to a native Japanese reader as ugly, non-native, and plain bizarre due to the unfamiliar glyphs showing up in the text. This is most likely what’s happening with your program.
 
