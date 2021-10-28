@@ -18,7 +18,7 @@ The Kanji glyph sets used in Chinese, Japanese, and Korean—commonly abbreviate
 | Simplified Chinese  | ![knife edge, Simplified Chinese](img/knife-sc.png) |
 | Traditional Chinese | ![knife edge, Traditional Chinese](img/knife-tc.png)|
 
-Therefore, if text in Japanese is displayed using a Kanji glyph set meant for other languages, it will look to a native Japanese reader as ugly, non-native, and plain bizarre due to the unfamiliar glyphs showing up in the text. This is most likely what’s happening with your program.
+Therefore, if text in Japanese is displayed using a Kanji glyph set meant for other languages, it will look to a native Japanese reader as non-native, vaguely shady, and plain bizarre due to the unfamiliar glyphs showing up in the text. This is most likely what’s happening with your program.
 
 ## Why does this happen?
 
@@ -39,7 +39,7 @@ Here are some characters that are known to have different glyph appearances betw
 
 <span class="emkanji" xml:lang="ja" lang="ja">刃直海角骨入</span>
 
-Try copy-pasting them into your code, see the rendered results, and compare them with below. If the glyphs don’t exactly look like the Japanese result sample below, your code is displaying Japanese wrong.
+Try copy-pasting them into your code, see the rendered results, and compare them with below. If the glyph shapes look different from the Japanese result sample below (aside from differences due to the font's styling), your code is displaying Japanese wrong.
 
 ![刃直海角骨入](img/testtext-correct.png)
 
@@ -51,9 +51,16 @@ In a nutshell, the way to fix it is to make your code and font be aware that it�
 
 On the web, browser rendering engines are usually smart enough to choose the correct fonts from generic font family declarations like `font-family: sans-serif`. However, it may choose a wrong font if the `lang` or `xml:lang` property of your DOM elements are specified to a value that's not `ja`. Make sure that when you switch the output language of your pages to Japanese, the `lang` property also changes to `ja`.
 
-Also, if explicitly specifying fonts in CSS, be sure to specify a font that is designed for the language. The following `font-family` statement covers most standard Japanese fonts preinstalled in macOS, iOS, Android, and Windows:
+Also, if explicitly specifying fonts in CSS, be sure to specify a font that is designed for the language. The following `font-family` statement covers most standard Japanese fonts preinstalled in modern devices (courtesy of [ICS Media](https://ics.media/entry/200317/)):
 
-[TBD; will insert CSS statement later]
+    body {
+      font-family: "Helvetica Neue",
+        Arial,
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans",
+        Meiryo,
+        sans-serif;
+    }
 
 ### Game development (Unity, Unreal, etc.)
 
