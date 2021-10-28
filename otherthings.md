@@ -34,7 +34,7 @@ For web pages, if you specify the `font-family` with the western font first and 
 
 In messaging or chat apps, allowing the user to submit the message by hitting the Enter key is commonplace. While this is also great to have in Japanese environments as well, care is required on how exactly to implement this behavior.
 
-In western languages, input from the keyboard is directly and immediately entered into text field. However, Japanese and several other languages use small programs called **input method editors (IMEs)** to enable the user to input the vast number of possible characters using a standard keyboard. With text input using IMEs, characters entered from the keyboard is first brought into a intermediate buffer space where the user can convert the entered characters into the exact desired letter forms. When the user hits the Enter key, the text is "finalized", leaves the buffer space, and into the text field. 
+In western languages, input from the keyboard is directly and immediately entered into text field. However, Japanese and several other languages use small programs called [input method editors (IMEs)](https://en.wikipedia.org/wiki/Input_method) to enable the user to input the vast number of possible characters using a standard keyboard. With text input using IMEs, characters entered from the keyboard is first brought into a intermediate buffer space where the user can convert the entered characters into the exact desired letter forms. When the user hits the Enter key, the text is "finalized", leaves the buffer space, and into the text field. 
 
 Hence, when using a messaging app, Japanese users (and other IME users) go through 4 steps: 
 
