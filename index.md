@@ -4,13 +4,13 @@ title: Your code displays Japanese wrong
 
 ## Why am I here?
 
-If you were brought here from a link given to you, the person who gave you the link probably thinks your code displays Japanese wrong. This page will give you a brief description of the glyph appearance problems that often arise with implementations of Asian text display, why it happens, why it’s a big deal, and how to fix it.
+If you were brought here from a link given to you, the person who gave you the link probably thinks your code displays Japanese wrong. In short, from a native Japanese eye, yѳur ҭєxҭ lѳѳks κιnd ѳf lικє ҭЋιs. This page will give you a brief description of the glyph appearance problems that often arise with implementations of Asian text display, why it happens, why it’s a big deal, and how to fix it.
 
 ## OK, what’s wrong?
 
 Kanji, also known as Hanzi, Hanja or just Han Characters, is a set of logographic characters that originated in China but are also used in Japan, Korea, Taiwan, etc. It consists of several thousand characters, each having their own glyph (glyph is a typographical term which refers to the appearance of a character, as opposed to the meaning.)
 
-The Kanji glyph sets used in Chinese, Japanese, and Korean -- commonly abbreviated to CJK -- each look mostly similar to each other, but have large numbers of characters that must look distinctly different. For instance, here are the Japanese, Simplified Chinese, and Traditional Chinese glyph variants of the character that represents *knife edge*:
+The Kanji glyph sets used in Chinese, Japanese, and Korean—commonly abbreviated to CJK—each look mostly similar to each other, but have large numbers of characters that must look distinctly different. For instance, here are the Japanese, Simplified Chinese, and Traditional Chinese glyph variants of the character that represents *knife edge*:
 
 | Language            | Glyph                                                             |
 |---------------------|-------------------------------------------------------------------|
@@ -29,7 +29,7 @@ However, this also meant that characters which differ in appearance across langu
 In many cases, the default fallback behavior in an ambiguous situation is to choose the Simplified Chinese glyph set. Therefore, Japanese text tends to be incorrectly displayed using Chinese glyphs.
 
 ## Is it that much of a big deal?
-As the app is not exactly unreadable in this state, it may be tempting to consider this issue minor and give it low priority. However, this issue is much more than the difference between, say, the lowercase A with or without the overhang - rather, imagine your єnglιsЋ ҭєxҭ lѳѳks lικє ҭЋιs. 
+As the app is not exactly unreadable in this state, it may be tempting to consider this issue minor and give it low priority. However, this issue is much more than the difference between, say, the lowercase A with the overhang (a) or without (α). Like the example at the beginning of this article, if the equivalent symptom was happening with English text, ιҭ wѳuld bє lѳѳkιng sѳmєҭЋιng lικє ҭЋιs. 
 
 Much like how the previous sentence immediately jumps out at you as appearing *weird* and *wrong*, Japanese text written in incorrect glyph sets will stand out similarly to any native speaker of Japanese, and will give off a connotation that whoever developed this app does not care about this (often large) subset of the global user population. I hope you agree in that this apathy is not the message you want to be sending.
 
@@ -57,7 +57,7 @@ Also, if explicitly specifying fonts in CSS, be sure to specify a font that is d
 
 ### Game development (Unity, Unreal, etc.)
 
-Games often store and display fonts using a system that generates font texture atlases from a font file, such as Unity's [TextMesh Pro](http://digitalnativestudios.com/).
+Games often store and display fonts using a system that generates font texture atlases from a font file, such as Unity's [TextMesh Pro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html).
 
 If you are using such a system, make sure you are generating separate font atlases for each CJK language, and that each of the source fonts used to generate them are specifically designed for that language. [Google's Noto project](https://fonts.google.com/noto) provides great open-licensed fonts specifically designed for [Japanese](https://fonts.google.com/noto/specimen/Noto+Sans+JP), [Simplified Chinese](https://fonts.google.com/noto/specimen/Noto+Sans+SC), [Traditional Chinese](https://fonts.google.com/noto/specimen/Noto+Sans+TC), [Korean](https://fonts.google.com/noto/specimen/Noto+Sans+KR), etc.
 
