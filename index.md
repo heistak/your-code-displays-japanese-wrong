@@ -8,9 +8,9 @@ If someone gave you a link to this page, that person probably thinks your code d
 
 ## OK, what’s wrong?
 
-Kanji, also known as Hanzi, Hanja or just Han Characters, is a set of characters that originated in China but are also used in Japan, Korea, Taiwan, etc. The Kanji glyph sets used in Chinese, Japanese, and Korean each consist of several thousand characters. (*Glyph* is a typographical term which refers to the appearance of a character, as opposed to the meaning.) 
+Kanji, also known as Hanzi, Hanja or just Han Characters, is a set of characters that originated in China but are also used in Japan, Korea, Taiwan, etc. The Kanji sets used in those countries each look mostly similar to each other, but also have large numbers of characters that have different-looking glyphs. (*Glyph* is a typographical term which refers to the appearance of a character, as opposed to the meaning.) 
 
-These sets look mostly similar to each other, but have large numbers of characters that look different. For instance, here are the Japanese, Simplified Chinese, and Traditional Chinese glyph variants of the character that represents *knife edge*:
+For instance, here are the Japanese, Simplified Chinese, and Traditional Chinese glyph variants of the character that represents *knife edge*:
 
 | Language            | Glyph                                               | Unicode Code Point |
 |---------------------|-----------------------------------------------------|--------------------|
@@ -24,7 +24,7 @@ Therefore, if text in Japanese is displayed using a Kanji glyph set meant for ot
 
 Back when Unicode was being designed, a decision called [Han Unification](https://en.wikipedia.org/wiki/Han_unification) was made to create a single unified set of all the Chinese (Simplified/Traditional), Japanese, and Korean Kanji characters. This involved giving equivalent code points to characters that were deemed equivalent across languages, which allowed the size of the character set to be kept small. 
 <style><!-- span.emkanji { font-size: 200%; line-height: 100%;} --></style>
-However, this also meant that characters which differ in appearance across languages, such as <span xml:lang="ja" lang="ja">刃</span> and <span  xml:lang="zh-Hans" lang="zh-Hans">刃</span> and <span xml:lang="zh-Hant" lang="zh-Hant">刃</span>, were given **identical code points!** It is up to the program displaying the text to render them using a font that can display the correct glyph set. 
+However, this also meant that characters which differ in appearance across languages, such as <span xml:lang="ja" lang="ja">刃</span> and <span  xml:lang="zh-Hans" lang="zh-Hans">刃</span> and <span xml:lang="zh-Hant" lang="zh-Hant">刃</span>, were given **identical code points!** You can see in the earlier chart that the three "knife edges" were ALL assigned U+5203. It is up to the program displaying the text to render them using a font that can display the correct glyph set. 
 
 In many cases, the default fallback behavior in an ambiguous situation is to choose the Simplified Chinese glyph set. Therefore, if the developer isn't aware of it, Japanese text tends to be incorrectly displayed using Chinese glyphs.
 
