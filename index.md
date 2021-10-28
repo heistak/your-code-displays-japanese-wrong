@@ -47,9 +47,9 @@ Try copy-pasting them into your code, see the rendered results, and compare them
 
 In a nutshell, the way to fix it is to make your code and font be aware that it’s displaying Japanese when it is doing so. 
 
-### Web development
+### Web development: Mark elements as lang=ja
 
-On the web, browser rendering engines are usually smart enough to choose the correct fonts from generic font family declarations like `font-family: sans-serif`. However, it may choose a wrong font if the `lang` or `xml:lang` property of your DOM elements are specified to a value that's not `ja`. Make sure that when you switch the output language of your pages to Japanese, the `lang` property also changes to `ja`.
+On the web, browser rendering engines are usually smart enough to choose the correct fonts from generic font family declarations like `font-family: sans-serif`. However, it may choose a wrong font if the `lang` or `xml:lang` property of your DOM elements are not specified to `ja`. Make sure that when you switch the output language of your pages to Japanese, the `lang` property also changes to `ja`.
 
 Also, if explicitly specifying fonts in CSS, be sure to specify a font that is designed for the language. The following `font-family` statement covers most standard Japanese fonts preinstalled in modern devices (courtesy of [ICS Media](https://ics.media/entry/200317/)):
 
@@ -62,11 +62,11 @@ Also, if explicitly specifying fonts in CSS, be sure to specify a font that is d
         sans-serif;
     }
 
-### Game development (Unity, Unreal, etc.)
+### Game development: Generate separate font atlases from language-specific fonts
 
 Games often store and display fonts using a system that generates font texture atlases from a font file, such as Unity's [TextMesh Pro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html).
 
-If you are using such a system, make sure you are generating separate font atlases for each CJK language, and that each of the source fonts used to generate them are specifically designed for that language. [Google's Noto project](https://fonts.google.com/noto) provides great open-licensed fonts specifically designed for [Japanese](https://fonts.google.com/noto/specimen/Noto+Sans+JP), [Simplified Chinese](https://fonts.google.com/noto/specimen/Noto+Sans+SC), [Traditional Chinese](https://fonts.google.com/noto/specimen/Noto+Sans+TC), [Korean](https://fonts.google.com/noto/specimen/Noto+Sans+KR), etc.
+If you are using such a system, make sure you are generating separate font atlases for each Asian language, and that each of the source fonts used to generate them are specifically designed for that language. [Google's Noto project](https://fonts.google.com/noto) provides great open-licensed fonts specifically designed for [Japanese](https://fonts.google.com/noto/specimen/Noto+Sans+JP), [Simplified Chinese](https://fonts.google.com/noto/specimen/Noto+Sans+SC), [Traditional Chinese](https://fonts.google.com/noto/specimen/Noto+Sans+TC), [Korean](https://fonts.google.com/noto/specimen/Noto+Sans+KR), etc.
 
 ## Any other things to be careful of?
 
