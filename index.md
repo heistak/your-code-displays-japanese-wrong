@@ -59,7 +59,7 @@ Also, if explicitly specifying fonts in CSS, be sure to specify a font that is d
 
 Games often store and display fonts using a system that generates font texture atlases from a font file, such as Unity's [TextMesh Pro](http://digitalnativestudios.com/).
 
-If you are using such a system, make sure you are generating separate font atlases for each CJK language, and that each of the source fonts used to generate them are specifically designed for that language. [Google's Noto project](https://www.google.com/get/noto/help/cjk/) provides great open-licensed fonts specifically designed for [Japanese](https://www.google.com/get/noto/#sans-jpan), [Simplified Chinese](https://www.google.com/get/noto/#sans-hans), [Traditional Chinese](https://www.google.com/get/noto/#sans-hant), [Korean](https://www.google.com/get/noto/#sans-kore), etc.
+If you are using such a system, make sure you are generating separate font atlases for each CJK language, and that each of the source fonts used to generate them are specifically designed for that language. [Google's Noto project](https://fonts.google.com/noto) provides great open-licensed fonts specifically designed for [Japanese](https://fonts.google.com/noto/specimen/Noto+Sans+JP), [Simplified Chinese](https://fonts.google.com/noto/specimen/Noto+Sans+SC), [Traditional Chinese](https://fonts.google.com/noto/specimen/Noto+Sans+TC), [Korean](https://fonts.google.com/noto/specimen/Noto+Sans+KR), etc.
 
 ## Any other things to be careful of?
 
