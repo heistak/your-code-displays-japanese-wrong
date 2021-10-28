@@ -38,10 +38,10 @@ In western languages, input from the keyboard is directly and immediately entere
 
 Hence, when using a messaging app, Japanese users (and other IME users) go through 4 steps: 
 
- 1) Typing the raw keystrokes into the buffer space
- 2) Converting those buffered text into desired letter forms and hitting Enter to finalize it
- 3) Repeating steps 1 and 2 as necessary until the sentence is complete
- 4) Finally, with nothing in the buffer, hitting Enter again to submit the message
+ 1. Typing the raw keystrokes into the buffer space
+ 1. Converting those buffered text into desired letter forms and hitting Enter to finalize it
+ 1. Repeating steps 1 and 2 as necessary until the sentence is complete
+ 1. Finally, with nothing in the buffer, hitting Enter again to submit the message
 
 The issue is that the *Enter key is used multiple times to interact with the IME program, without the intent of submitting the message.* If the messaging app is coded in a way that it directly hooks to the key code of the Enter key, the app will prematurely submit the message when the user is still in the middle of writing the message! To avoid this, the app should not look for the raw key code of the Enter key, but rather look for a newline character.
 
