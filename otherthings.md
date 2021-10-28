@@ -9,7 +9,7 @@ Line breaking, or word-wrapping, in Japanese contain a few new rules as well. We
 
 * The familiar western line-break rule of using spaces as opportunities to break into a new line should still be in effect.
 * Points where the writing script switches between western and Asian, eg. "例えばこういっ**たe**xampl**eに**おいて" should also be used as opportunities to break as well, despite the lack of an explicit space character. 
-* Certain characters like 。、） must not be the first character in a line, and should wrap at the character before it. For details, see [Wikipedia's article on Line breaking rules in East Asian languages](https://en.wikipedia.org/wiki/Line_breaking_rules_in_East_Asian_languages) *(Kinsoku Shori)*.
+* Certain characters like 。、） must not be the first character in a line, and should wrap at the character before it. For details, see [Wikipedia's article on Line breaking rules in East Asian languages](https://en.wikipedia.org/wiki/Line_breaking_rules_in_East_Asian_languages) *(Kinsoku Shori)*, and the W3C's text layout requirements in [Chinese](https://www.w3.org/TR/clreq/), [Japanese](https://www.w3.org/TR/jlreq/), and [Korean](https://www.w3.org/TR/klreq/).
 
 
 ### Web: Do not enable discretionary ligatures
@@ -30,9 +30,9 @@ The above screenshot from Pokémon GO shows composite fonts in use. Note that th
 For web pages, if you specify the `font-family` with the western font first and Japanese font later, the rendering engine will use the western font for western glyphs, and use the Japanese font only for glyphs that are missing in the western font. This will successfully create a composite font appearance.
 
 
-### Messaging Apps: Do not directly hook to the Enter key to submit messages
+### Messaging Apps: Do not directly hook to the Enter key to submit messages (by default)
 
-In messaging or chat apps, allowing the user to submit the message by hitting the Enter key is commonplace. While this is great to have, care is required on implementing this behavior without making the app unusable Asian users.
+In messaging or chat apps, allowing the user to submit the message by hitting the Enter key is commonplace. While this is great to have, care is required on implementing this behavior without making the app unusable to Asian users.
 
 In western languages, input from the keyboard is directly and immediately entered into text field. However, Japanese and several other languages use small programs called [input method editors (IMEs)](https://en.wikipedia.org/wiki/Input_method) to enable the user to input the vast number of possible characters using a standard keyboard. With text input using IMEs, characters entered from the keyboard is first brought into a intermediate buffer space where the user can convert the entered characters into the exact desired letter forms. When the user hits the Enter key, the text is "finalized", leaves the buffer space, and into the text field. 
 
@@ -43,6 +43,8 @@ Hence, when using a messaging app, Japanese users (and other IME users) go throu
  1. Repeating steps 1 and 2 as necessary until the sentence is complete
  1. Finally, with nothing in the buffer, hitting Enter again to submit the message
 
-The issue is that the *Enter key is used multiple times to interact with the IME program, without the intent of submitting the message.* If the messaging app is coded in a way that it directly hooks to the key code of the Enter key, the app will prematurely submit the message when the user is still in the middle of writing the message! To avoid this, the app should not look for the raw key code of the Enter key, but rather look for a newline character.
+The issue is that the *Enter key is used multiple times to interact with the IME program, without the intent of submitting the message.* If the messaging app is coded in a way that it directly hooks to the key code of the Enter key, the app will prematurely submit the message when the user is still in the middle of writing the message! To avoid this, the app by default should not look for the raw key code of the Enter key, but rather look for a newline character. 
+
+(I was notified by [lifthrasiir on Hacker News](https://news.ycombinator.com/item?id=29023626) that in some Chinese/Korean environments, there can be IMEs that would be better served by having the raw Enter key code serve as submit. I guess having the app look for a newline by default, but allowing an option to make it look for the key code instead, is the only way to satisfy all parties.)
 
 [Back to Main Page](index.html)
