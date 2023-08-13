@@ -1,4 +1,4 @@
-<!-- Google tag (gtag.js) -->
+{% if site.google_analytics %}
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZRY737571F"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -7,3 +7,4 @@
 
   gtag('config', 'G-ZRY737571F');
 </script>
+{% endif %}
