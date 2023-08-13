@@ -2,9 +2,3 @@ theme: jekyll-theme-minimal
 title: Your Code Displays Japanese Wrong
 description: A static site to link people to when their code is displaying Japanese wrong.
 google_analytics: "G-ZRY737571F"
-# Analytics
-analytics:
-  provider               : "google-gtag"
-  google:
-    measurement_id          : "G-ZRY737571F"
-    anonymize_ip         : false
