@@ -84,3 +84,13 @@ The author is a Japanese native who only speaks English/Japanese, and made this 
 ## Author
 Kenji Iguchi
 * [Email](mailto&#58;%&#54;Ee%65d&#108;&#101;&#64;&#104;eistak%2&#69;%63om), [Twitter](https://twitter.com/needle_e), [Facebook](http://heistak.com/fb)
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZRY737571F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZRY737571F');
+</script>
+
