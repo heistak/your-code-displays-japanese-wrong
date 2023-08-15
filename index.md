@@ -28,8 +28,10 @@ However, this also meant that characters which differ in appearance across langu
 
 In many cases, the default fallback behavior in an ambiguous situation is to choose the Simplified Chinese glyph set. Therefore, if the developer isn't aware of it, Japanese text tends to be incorrectly displayed using Chinese glyphs.
 
-## Is it that much of a big deal?
-As the app is not exactly unreadable in this state, it may be tempting to consider this issue minor and give it low priority. However, this issue is much more than the difference between, say, the lowercase A with the overhang (a) or without (α). Like the example at the beginning of this article, if the equivalent symptom was happening with English text, ιҭ wѳuld bє lѳѳκιng sѳmєҭЋιng lικє ҭЋιs. 
+## Is it that much of a big deal? I mean, nobody had reported this issue to me before.
+The reason nobody had reported this issue to you is most likely because *the people most impacted by this are not speakers of English!*
+
+And yes, since the app is not exactly unreadable in this state, it may be tempting to consider this issue minor and give it low priority. However, this issue is much more than the difference between, say, the lowercase A with the overhang (a) or without (α). Like the example at the beginning of this article, if the equivalent symptom was happening with English text, ιҭ wѳuld bє lѳѳκιng sѳmєҭЋιng lικє ҭЋιs. 
 
 Much like how the previous sentence immediately jumps out at you as appearing *weird* and *wrong*, Japanese text written in incorrect glyph sets will stand out similarly to any native speaker of Japanese, and will give off a connotation that whoever developed this app does not care about this (often large) subset of the global user population. I hope you agree in that this apathy is not the message you want to be sending.
 
