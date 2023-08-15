@@ -1,58 +1,57 @@
 ---
-title: 日本語の表示がおかしいよ
+title: そのコード、日本語の表示がおかしいよ。
 ---
 
 ## ここはどこ？
 
-このページを誰かが紹介してきたのであれば、おそらくその人はあなたのコードが日本語を正しく表示していないと思っているでしょう。端的に言うと、日本人の目から見ると、あなたのテキストはこんな風に見えています。本ページは、アジアのテキスト表示の実装によく起こる文字の表示問題、それがどうして起こるのか、それが大問題である理由、そしてそれをどのように修正するかについての簡単な説明を提供します。
-If someone gave you a link to this page, that person probably thinks your code displays Japanese wrong. In short, from a native Japanese eye, yѳur ҭєxҭ lѳѳκs κιnd ѳf lικє ҭЋιs. This page will give you a brief description of the glyph appearance problems that often arise with implementations of Asian text display, why it happens, why it’s a big deal, and how to fix it.
+誰かがこのページを紹介してきたのであれば、その人は多分、あなたのコードの日本語の表示がおかしいと思っているのでしょう。端的に言うと、<span xml:lang="zh-Hans" lang="zh-Hans">日本語話者から直接見ると、貴方の文章はこんな風に見えています。</span>本ページは、アジア圏テキスト表示の実装でよく起こる文字表示の問題について、なぜそれが起こるのか、なぜそれが大きな問題なのか、そしてどのように修正すればいいか等の簡単な説明を提供します。
 
-## OK, what’s wrong?
+## ふむ、それで何が問題なの？
 
-Kanji, also known as Hanzi, Hanja or just Han Characters, is a set of characters that originated in China but are also used in Japan, Korea, Taiwan, etc. The Kanji sets used in those countries each look mostly similar to each other, but also have large numbers of characters that have different-looking glyphs. (*Glyph* is a typographical term which refers to the appearance of a character, as opposed to the meaning.) 
+「漢字」は、中国が起源でありつつ、日本・韓国・台湾などでも使われている文字体系のことを指します。これらの国々での漢字の形は似ているものも多いですが、実は国ごとに微妙に形が違う字体もたくさんあります。（「字体」とはタイポグラフィにおける概念で、文字の意味や音ではなく姿形そのものを指す言葉です。）
 
-For instance, here are the Japanese, Simplified Chinese, and Traditional Chinese glyph variants of the character that represents *knife edge*:
+たとえば、刃物のやいばを意味する文字の日本語と中国語（簡体・繁体）の字体を見てみましょう。
 
-| Language            | Glyph                                               | Unicode Code Point |
-|---------------------|-----------------------------------------------------|--------------------|
-| Japanese            | ![knife edge, Japanese](img/knife-jp.png)           | U+5203             |
-| Simplified Chinese  | ![knife edge, Simplified Chinese](img/knife-sc.png) | U+5203             |
-| Traditional Chinese | ![knife edge, Traditional Chinese](img/knife-tc.png)| U+5203             |
+| 言語           | 字体                                | Unicodeコードポイント |
+|----------------|-------------------------------------|---------------------|
+| 日本語          | ![刃, 日本語](img/knife-jp.png)      | U+5203              |
+| 簡体字中国語     | ![刃, 簡体字中国語](img/knife-sc.png) | U+5203              |
+| 繁体字中国語     | ![刃, 繁体字中国語](img/knife-tc.png) | U+5203              |
 
-Therefore, if text in Japanese is displayed using a Kanji glyph set meant for other languages, it will look to a native Japanese reader as non-native, vaguely shady, and plain bizarre due to the unfamiliar glyphs showing up in the text. This is most likely what’s happening with your program.
+日本語の文章が他言語の字体セットで表示されてしまうと、日本語ネイティブスピーカーの目には不自然で奇妙に映ります。この問題があなたのプログラムで起きているかもしれません。
 
-## Why does this happen?
+## なぜこんなことに？
 
-Back when Unicode was being designed, a decision called [Han Unification](https://en.wikipedia.org/wiki/Han_unification) was made to create a single unified set of all the Chinese (Simplified/Traditional), Japanese, and Korean Kanji characters. This involved giving equivalent code points to characters that were deemed equivalent across languages, which allowed the size of the character set to be kept small. 
-<style><!-- span.emkanji { font-size: 200%; line-height: 100%;} --></style>
-However, this also meant that characters which differ in appearance across languages, such as <span xml:lang="ja" lang="ja">刃</span> and <span  xml:lang="zh-Hans" lang="zh-Hans">刃</span> and <span xml:lang="zh-Hant" lang="zh-Hant">刃</span>, were given **identical code points!** You can see in the earlier chart that the three "knife edges" were ALL assigned U+5203. It is up to the program displaying the text to render them using a font that can display the correct glyph set. 
+Unicodeの設計時、文字セットのサイズを小さく抑えるため、中国語・日本語・韓国語の漢字を「[CJK統合漢字](https://ja.wikipedia.org/wiki/CJK%E7%B5%B1%E5%90%88%E6%BC%A2%E5%AD%97)」としてまとめる決定がされました。このため「同じである」とみなされた別言語の漢字は、たとえ<span xml:lang="ja" lang="ja">刃</span>・<span  xml:lang="zh-Hans" lang="zh-Hans">刃</span>・<span xml:lang="zh-Hant" lang="zh-Hant">刃</span>など字体が異なるものであっても、同一のコードポイント（符号位置）が割り当てられることがあるのです！実際、上の表の「刃」は全てU+5203が割り当てられています。正しい字体で表示するためには、プログラム側が適切なフォントを使って表示するよう対処する必要があります。
 
-In many cases, the default fallback behavior in an ambiguous situation is to choose the Simplified Chinese glyph set. Therefore, if the developer isn't aware of it, Japanese text tends to be incorrectly displayed using Chinese glyphs.
+テキストの言語が不明な状況では、多くの場合、簡体字中国語の字体セットが自動的に選ばれます。したがって、開発者がこの問題の存在を認識していない場合、日本語のテキストが中国のグリフで表示される傾向があります。
 
-## Is it that much of a big deal?
-As the app is not exactly unreadable in this state, it may be tempting to consider this issue minor and give it low priority. However, this issue is much more than the difference between, say, the lowercase A with the overhang (a) or without (α). Like the example at the beginning of this article, if the equivalent symptom was happening with English text, ιҭ wѳuld bє lѳѳκιng sѳmєҭЋιng lικє ҭЋιs. 
+## 本当に大した問題なの？今まで指摘された事なかったんだけど
+この問題を今まで指摘された事がなかったのだとしたら、それはこの問題の影響を最も受ける層が非英語話者だからでしょう。
 
-Much like how the previous sentence immediately jumps out at you as appearing *weird* and *wrong*, Japanese text written in incorrect glyph sets will stand out similarly to any native speaker of Japanese, and will give off a connotation that whoever developed this app does not care about this (often large) subset of the global user population. I hope you agree in that this apathy is not the message you want to be sending.
+実際、この状態でアプリやウェブページが全く読めないというわけではないので、この問題を軽微なものとみなして優先度を下げたくなるかもしれません。しかし、この問題は、たとえば、オーバーハング付きの小文字のA(a)とオーバーハングなし(α)の違いよりも大きいものです。日本語ネイティブスピーカーにとって、見慣れた形と違う字体での漢字の表示は非常に気になるものです。これが放置されたままになっていると、その言語に対して無頓着に見える様子から、アプリやサイト自体の品質に疑問を持つこともありえます。そのような印象を与えたくないのであれば、この問題の解決は必要です。
 
-## How can I check if it’s happening or not?
+## では、どうすれば問題が起きているか確認できる？
 
-Here are some characters that are known to have different glyph appearances between different languages.
+以下に、各言語間で異なる字形を持つ漢字のサンプルを示します。
 
 <span class="emkanji" xml:lang="ja" lang="ja">刃直海角骨入</span>
 
-Try copy-pasting them into your code, see the rendered results, and compare them with below. If the glyph shapes look different from the Japanese result sample below (aside from differences due to the font's styling), your code is displaying Japanese wrong.
+このテキストをコピーして自分のアプリやページ内にペーストし、表示結果を下の図と比較してください。"Japanese"の表示サンプルと字形が異なっている場合（※明朝体・ゴシック体などフォント自体のスタイルの違いによる差は除く）、日本語の表示がおかしくなっています。
 
 ![刃直海角骨入](img/testtext-correct.png)
 
-## How can I fix it?
+## 直し方は？
+
+プログラムコードとフォントそれぞれが「日本語を表示している」と正しく認識させることで、問題を解決することができます。
 
 In a nutshell, the way to fix it is to make your code and font be aware that it’s displaying Japanese when it is doing so. 
 
-### Web development: Mark elements as lang=ja
+### Web開発: 要素を lang=ja としてマークする
 
-On the web, browser rendering engines are usually smart enough to choose the correct fonts from generic font family declarations like `font-family: sans-serif`. However, it may choose a wrong font if the `lang` or `xml:lang` property of your DOM elements are not specified to `ja`. Make sure that when you switch the output language of your pages to Japanese, the `lang` property also changes to `ja`.
+ウェブブラウザーは普段、`font-family: sans-serif`などのフォント宣言に基づいて適切なフォントを自動で選びます。しかし、ブラウザーやOSの言語設定によっては、DOM要素の`lang`または`xml:lang`属性で明示的に`ja`という言語指定をしていないと、適切なフォントが選ばれないことがあります。日本語のテキストを表示するときは、そのDOM要素の`lang`属性が必ず`ja`になるようにしてください。
 
-Also, if explicitly specifying fonts in CSS, be sure to specify a font that is designed for the language. The following `font-family` statement covers most standard Japanese fonts preinstalled in modern devices (courtesy of [ICS Media](https://ics.media/entry/200317/)):
+また、CSSでフォントを指定する際は、日本語表示に適したフォントを選んでください。以下は、多くのデバイスに最初から入っている日本語フォントを対象とした`font-family`の設定例です（[ICS Media](https://ics.media/entry/200317/)より許可のもと転載）：
 
     body {
       font-family: "Helvetica Neue",
@@ -63,25 +62,25 @@ Also, if explicitly specifying fonts in CSS, be sure to specify a font that is d
         sans-serif;
     }
 
-### Game development: Generate separate font atlases from language-specific fonts
+### ゲーム開発: 各言語専用のフォントアトラスを個別に作成
 
-Games often store and display fonts using a system that generates font texture atlases from a font file, such as Unity's [TextMesh Pro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html).
+ゲーム開発においては、フォントファイルからフォントのテクスチャアトラスを生成するシステムを使用して、フォントを格納・表示することがよくあります。例えば、Unityの[TextMesh Pro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html)など。
 
-If you are using such a system, make sure you are generating separate font atlases for each Asian language, and that each of the source fonts used to generate them are specifically designed for that language. [Google's Noto project](https://fonts.google.com/noto) provides great open-licensed fonts specifically designed for [Japanese](https://fonts.google.com/noto/specimen/Noto+Sans+JP), [Simplified Chinese](https://fonts.google.com/noto/specimen/Noto+Sans+SC), [Traditional Chinese](https://fonts.google.com/noto/specimen/Noto+Sans+TC), [Korean](https://fonts.google.com/noto/specimen/Noto+Sans+KR), etc.
+このようなシステムを使用している場合、アジアの各言語ごとに別々のフォントアトラスを生成するようにしてください。また、それらを生成するための元となるフォントがその言語専用に設計されていることを確認してください。[GoogleのNotoプロジェクト](https://fonts.google.com/noto)は、[日本語](https://fonts.google.com/noto/specimen/Noto+Sans+JP)、[簡体字中国語](https://fonts.google.com/noto/specimen/Noto+Sans+SC)、[繁体字中国語](https://fonts.google.com/noto/specimen/Noto+Sans+TC)、[韓国語](https://fonts.google.com/noto/specimen/Noto+Sans+KR)など、各言語専用に設計された高品質なオープンライセンスのフォントを提供しています。
 
-## Any other things to be careful of?
+## 他に何か注意するべき点は？
 
-A few other things. [I broke them off to a separate page](otherthings.html).
+いくつかあります。 [別のページに分けました](otherthings_ja.html).
 
-## Do similar problems occur with other languages? / Why aren’t there steps to fix it in [insert environment here]?
+## 他の言語でも似たような問題は？◯◯な環境での直し方は無いの？
 
-The author is a Japanese native who only speaks English/Japanese, and made this site out of a personal peeve. I don't have much insight on other languages, sorry. If you can offer assistance in problems that happen with other languages/environments, or find any mistakes, please drop me a line.
+私は日本語と英語しか話せず、個人的な問題意識からこのページを作ったので、申し訳ありませんが他の言語の状況はあまり把握していません。このサイトの情報に間違いや補足があれば、ぜひ教えてください。
 
-## More Resources
+## 参考資料
 
-* Wikipedia: [Han Unification](https://en.wikipedia.org/wiki/Han_unification), [Variant Chinese Character](https://en.wikipedia.org/wiki/Variant_Chinese_character)
+* Wikipedia: [CJK統合漢字](https://ja.wikipedia.org/wiki/CJK%E7%B5%B1%E5%90%88%E6%BC%A2%E5%AD%97), [Unihan](https://ja.wikipedia.org/wiki/Unihan)
 * Model View Culture: [I Can Text You A Pile of Poo, But I Can’t Write My Name](https://modelviewculture.com/pieces/i-can-text-you-a-pile-of-poo-but-i-cant-write-my-name)
 
-## Author
-Kenji Iguchi
-* [Email](mailto&#58;%&#54;Ee%65d&#108;&#101;&#64;&#104;eistak%2&#69;%63om), [Twitter](https://twitter.com/needle_e), [Facebook](http://heistak.com/fb)
+## 著者
+井口健治
+* [Email](mailto&#58;%&#54;Ee%65d&#108;&#101;&#64;&#104;eistak%2&#69;%63om), [Twitter](https://twitter.com/needle), [Facebook](http://heistak.com/fb)
