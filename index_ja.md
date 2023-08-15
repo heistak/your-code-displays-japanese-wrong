@@ -50,8 +50,6 @@ Unicodeの設計時、文字セットのサイズを小さく抑えるため、�
 
 プログラムコードとフォントそれぞれが「日本語を表示している」と正しく認識させることで、問題を解決することができます。
 
-In a nutshell, the way to fix it is to make your code and font be aware that it’s displaying Japanese when it is doing so. 
-
 ### Web開発: 要素を lang=ja としてマークする
 
 ウェブブラウザーは普段、`font-family: sans-serif`などのフォント宣言に基づいて適切なフォントを自動で選びます。しかし、ブラウザーやOSの言語設定によっては、DOM要素の`lang`または`xml:lang`属性に`ja`と指定して「この文章は日本語である」と明示的に宣言していないと、適切なフォントが選ばれないことがあります。日本語のテキストを表示する場所では、そのDOM要素の`lang`属性が必ず`ja`になるようにしてください。
