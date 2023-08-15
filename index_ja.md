@@ -1,6 +1,7 @@
 ---
 title: そのコード、日本語の表示がおかしいよ。
 ---
+[Back to English](index.html)
 
 ## ここはどこ？
 
@@ -74,7 +75,7 @@ In a nutshell, the way to fix it is to make your code and font be aware that it�
 
 ## 他に何か注意するべき点は？
 
-いくつかあります。 [別のページに分けました](otherthings_ja.html).
+いくつかあります。 [別のページに分けました。](otherthings_ja.html)
 
 ## 他の言語でも似たような問題は？◯◯な環境での直し方は無いの？
 
